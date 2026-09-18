@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MILO — one financial identity above all your accounts</title>
+<meta name="description" content="MILO is a student financial operating system: an automatic money journal, an AI CFO grounded in your own data, verified split-bill memory and peer emergency liquidity — built on consent, never on fake data." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--paper:#F3F5F2;--paper-2:#E9EDE7;--surface:#fff;--ink:#12233A;--ink-2:#3E4C60;--ink-3:#74809A;--line:#DDE3DC;--green:#1F7A63;--green-soft:#DDEFE7;--marigold:#E9A93A;--marigold-soft:#FBEFD6;--rose:#C74B5E;--blue:#2F5F9E;--blue-soft:#E1E9F5;--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#0F1722;--paper-2:#141F2D;--surface:#182435;--ink:#EEF2F5;--ink-2:#C5CEDA;--ink-3:#8E9AAB;--line:#2A3849;--green:#4FBF9A;--green-soft:#173a30;--marigold:#F2B85A;--marigold-soft:#3b2d13;--blue:#7FA6E0;--blue-soft:#1d2d45}}
+:root[data-theme=dark]{--paper:#0F1722;--paper-2:#141F2D;--surface:#182435;--ink:#EEF2F5;--ink-2:#C5CEDA;--ink-3:#8E9AAB;--line:#2A3849;--green:#4FBF9A;--green-soft:#173a30;--marigold:#F2B85A;--marigold-soft:#3b2d13;--blue:#7FA6E0;--blue-soft:#1d2d45}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 40% at 8% 0%,color-mix(in srgb,var(--green) 16%,transparent),transparent 70%),radial-gradient(45% 35% at 100% 10%,color-mix(in srgb,var(--marigold) 18%,transparent),transparent 70%),radial-gradient(50% 40% at 60% 100%,color-mix(in srgb,var(--blue) 14%,transparent),transparent 70%);animation:amb 28s ease-in-out infinite alternate}
+@keyframes amb{to{transform:translate3d(-2%,1.5%,0) scale(1.06)}}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;line-height:1.08;margin:0}h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800}h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800}h3{font-size:1.1rem;font-weight:700}
+p{margin:0}a{color:var(--blue)}.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--paper) 78%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;text-decoration:none;color:var(--ink)}
+.mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--blue));position:relative}.mark::after{content:'';position:absolute;inset:9px 7px;border-radius:3px;background:var(--paper);opacity:.95;transform:skewX(-12deg)}
+nav ul{display:none;gap:22px;list-style:none;margin:0;padding:0;font-size:14px}nav ul a{color:var(--ink-2);text-decoration:none}nav ul a:hover{color:var(--ink)}@media(min-width:800px){nav ul{display:flex}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;border:1px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(18,35,58,.5)}.btn.sec{background:var(--surface);color:var(--ink);border-color:var(--line)}.btn.sm{padding:8px 14px;font-size:14px}
+.hero{padding:88px 0 40px;display:grid;gap:36px;align-items:center}@media(min-width:900px){.hero{grid-template-columns:1.1fr .9fr;padding:110px 0 70px}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--green);background:var(--green-soft);padding:6px 12px;border-radius:999px}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--ink-2);max-width:56ch;margin-top:20px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.phone{position:relative;margin:0 auto;width:min(360px,90%);border-radius:36px;background:var(--surface);border:1px solid var(--line);box-shadow:0 2px 4px rgba(18,35,58,.05),0 40px 80px -40px rgba(18,35,58,.5);padding:18px;overflow:hidden}
+.phone::before{content:'';position:absolute;width:300px;height:300px;right:-120px;top:-150px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--marigold) 26%,transparent),transparent)}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(18,35,58,.04),0 12px 32px -20px rgba(18,35,58,.28)}
+.lbl{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:700}.big{font-family:var(--display);font-size:2.2rem;font-weight:800;letter-spacing:-.03em}.pos{color:var(--green)}.neg{color:var(--rose)}
+.strip{height:12px;border-radius:8px;background:var(--paper-2);display:flex;overflow:hidden;margin-top:12px}.strip span{display:block;height:100%}.s1{background:var(--marigold)}.s2{background:var(--blue)}.s3{background:var(--green)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:8px}.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;padding:8px 0;border-top:1px solid var(--line)}.badge{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600}.b-blue{background:var(--blue-soft);color:var(--blue)}.b-green{background:var(--green-soft);color:var(--green)}.b-mar{background:var(--marigold-soft);color:#8a5a10}
+section{padding:64px 0}.grid{display:grid;gap:16px}@media(min-width:700px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(4,1fr)}}
+.feat{padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}.feat:hover{transform:translateY(-3px);box-shadow:0 30px 60px -30px rgba(18,35,58,.35)}.feat svg{width:26px;height:26px;color:var(--green)}.feat p{color:var(--ink-2);font-size:14px;margin-top:8px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.pipe{display:grid;gap:8px;margin-top:18px}.pipe div{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;font-size:14px}.pipe i{width:26px;height:26px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:12px}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}.reveal.in{opacity:1;transform:none}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:600}.faq p{color:var(--ink-2);font-size:14px;margin-top:8px}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--paper-2);padding:1px 6px;border-radius:5px}
+.notice{padding:14px 16px;border-radius:14px;background:var(--marigold-soft);border:1px solid color-mix(in srgb,var(--marigold) 40%,transparent);font-size:14px}
+footer{padding:40px 0 60px;color:var(--ink-3);font-size:13px;border-top:1px solid var(--line)}
+@media(prefers-reduced-motion:reduce){body::before,.reveal{animation:none;transition:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="#top"><span class="mark"></span>MILO</a><ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#security">Security</a></li><li><a href="#get">Get MILO</a></li><li><a href="#faq">FAQ</a></li></ul><a class="btn sm" href="#get">Get the app</a></div></nav>
+
+<header class="wrap hero" id="top">
+  <div>
+    <span class="eyebrow">Student Financial Operating System</span>
+    <h1 style="margin-top:18px">One financial identity above all your accounts.</h1>
+    <p class="lead">MILO journals every rupee automatically, tells you what is actually yours to spend, remembers who owes whom, and answers money questions from your real data. No manual entry. No fake numbers. No bank passwords.</p>
+    <div class="cta"><a class="btn" href="#get">Get MILO for Android</a><a class="btn sec" href="#how">See how consent works</a></div>
+    <p style="margin-top:18px;font-size:13px;color:var(--ink-3)">Google sign-in only · RBI Account Aggregator · Zerodha & Upstox · Open source</p>
+  </div>
+  <div class="phone reveal">
+    <div class="card"><div class="lbl">Actually yours to spend</div><div class="big">₹53,195</div><div class="strip"><span class="s1" style="width:14%"></span><span class="s2" style="width:52%"></span><span class="s3" style="width:34%"></span></div><div class="legend"><span><i class="s1"></i>Reserved</span><span><i class="s2"></i>Committed</span><span><i class="s3"></i>Flexible</span></div></div>
+    <div class="card" style="margin-top:12px"><div class="lbl">Needs you</div><div class="row"><span><span class="badge b-blue">Purpose</span> ₹30,000 from Papa. What is it for?</span><span>›</span></div><div class="row"><span><span class="badge b-blue">Split</span> ₹4,500 at Truffles. Who was involved?</span><span>›</span></div><div class="row"><span><span class="badge b-mar">Review</span> UPI – ABC ENTERPRISES – ₹650</span><span>›</span></div></div>
+    <div class="card" style="margin-top:12px"><div class="lbl">Student Money Health</div><div style="display:flex;align-items:baseline;gap:8px"><span class="big">74</span><span style="font-size:12px;color:var(--ink-3)">/100 · not a credit score</span></div><div class="row" style="border:0;padding-top:4px"><span style="color:var(--ink-2)">▲ 2 since last week · food budget held 3 weeks</span></div></div>
+    <p style="font-size:11px;color:var(--ink-3);margin-top:10px;text-align:center">Illustration with sample numbers. In the app, every figure comes from an account you connected.</p>
+  </div>
+</header>
+
+<section id="features" class="wrap">
+  <div class="kicker reveal">What MILO does</div>
+  <h2 class="reveal">Built for how student money actually moves.</h2>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><h3 style="margin-top:12px">Zero-manual-entry journal</h3><p>Every transaction from connected banks and cards lands in one journal, categorised, with internal transfers recognised and never counted as spending. Cash and informal loans are the only things you type.</p></div>
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><h3 style="margin-top:12px">AI CFO, grounded</h3><p>Ask "can I afford ₹6,000 for a course this month?" and get an answer computed from your commitments, reservations and forecast, with every step of the reasoning shown. It never invents a number.</p></div>
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-3 2.5-5 5-5s5 2 5 5"/></svg><h3 style="margin-top:12px">Split-Bill Memory with verified people</h3><p>Equal, unequal and partial splits between real MILO accounts, not typed names. Balances, reminders and settlements follow the person, and the fewest-payments engine clears a group trip in one pass.</p></div>
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h6"/><circle cx="18" cy="16" r="3"/></svg><h3 style="margin-top:12px">Purpose-based money</h3><p>₹30,000 from home is hostel, food, transport, education, emergency and flexible money before it is a balance. Bank balance is not spendable balance, and MILO keeps the difference visible.</p></div>
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><h3 style="margin-top:12px">Forecast & Money Calendar</h3><p>Committed versus flexible, irregular-income modelling, and a calendar that projects your balance through rent, EMIs and SIPs so the lowest point is visible before it happens.</p></div>
+    <div class="feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z"/><path d="M12 7v6M9 10h6"/></svg><h3 style="margin-top:12px">Peer emergency liquidity</h3><p>Short-term help from people who know you, with a reason, a date and no interest. Requests reach only the verified people you have split with or your college network.</p></div>
+  </div>
+  <div class="grid g4" style="margin-top:16px">
+    <div class="feat reveal"><h3>Allowance Survival Mode</h3><p>A month becomes a daily number, recalculated when today goes over.</p></div>
+    <div class="feat reveal"><h3>"Bro, where did my money go?"</h3><p>Category totals, the comparison that explains them, and why spending rose.</p></div>
+    <div class="feat reveal"><h3>The ₹100 Problem</h3><p>34 small purchases are still ₹3,920. See them, and what cutting 25% saves.</p></div>
+    <div class="feat reveal"><h3>Student Money Health</h3><p>A 0–100 reading of your own habits, with the reason it moved. Not a credit score.</p></div>
+  </div>
+</section>
+
+<section id="how" class="wrap">
+  <div class="kicker reveal">Consent, not credentials</div>
+  <h2 class="reveal">How your data gets in, and what never does.</h2>
+  <div class="grid g2" style="margin-top:28px;align-items:start">
+    <div class="pipe reveal">
+      <div><i>1</i><span><b>Sign in with Google.</b> That identity is your MILO account. There is no password to create.</span></div>
+      <div><i>2</i><span><b>Pick a provider.</b> MILO lists exactly which scopes it will read: balances and transactions, nothing more.</span></div>
+      <div><i>3</i><span><b>Approve on the provider's own screen.</b> Banks via the RBI Account Aggregator framework; brokers via Zerodha Kite or Upstox OAuth. MILO never sees what you type there.</span></div>
+      <div><i>4</i><span><b>Synced, timestamped, revocable.</b> Every account shows when it was last synced; disconnecting revokes the consent and deletes the data.</span></div>
+    </div>
+    <div>
+      <div class="card reveal"><div class="lbl">What MILO never asks for</div><ul style="margin:10px 0 0 18px;padding:0;color:var(--ink-2);font-size:14px;line-height:1.8"><li>Net-banking passwords, OTPs, PINs, card CVVs</li><li>Access to accounts you did not explicitly approve</li><li>Permission to move money — MILO is read-only</li><li>More than balances and transactions</li></ul></div>
+      <div class="notice reveal" style="margin-top:12px"><b>No fake numbers, ever.</b> If a bank or broker cannot be connected through an authorised provider, MILO says so. The only synthetic data is the optional demo sandbox, and it is labelled DEMO on every screen.</div>
+    </div>
+  </div>
+</section>
+
+<section id="security" class="wrap">
+  <div class="kicker reveal">Security</div>
+  <h2 class="reveal">Treated like a financial application, because it is one.</h2>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="feat reveal"><h3>Google OAuth only</h3><p>Server-side authorization-code flow, verified ID tokens, signed httpOnly session cookies, revocable sessions. On Android, sign-in runs in the system browser and returns through a single-use deep-link code.</p></div>
+    <div class="feat reveal"><h3>Encrypted tokens, least privilege</h3><p>Provider tokens are AES-256-GCM encrypted at rest and deleted on disconnect. Every query is scoped to the signed-in user; nobody can read another person's accounts, splits or requests.</p></div>
+    <div class="feat reveal"><h3>Auditable</h3><p>Consent grants, syncs, disconnects, splits, payments, reminders and sign-ins are written to an audit trail you can see under Everything → Data & privacy.</p></div>
+  </div>
+</section>
+
+<section id="get" class="wrap">
+  <div class="kicker reveal">Get MILO</div>
+  <h2 class="reveal">One app, any MILO server.</h2>
+  <div class="grid g2" style="margin-top:28px;align-items:start">
+    <div class="card reveal">
+      <h3>Android app</h3>
+      <p style="color:var(--ink-2);font-size:14px;margin-top:8px">Install <code>MILO.apk</code> (Android 5.1 and up, 3 MB). On first launch, enter your college or team's MILO server address once, then continue with Google. The APK is signed and works with every MILO deployment, so one file can be shared with everyone.</p>
+      <ol style="margin:12px 0 0 18px;padding:0;font-size:14px;color:var(--ink-2);line-height:1.8"><li>Allow installs from your browser or file manager</li><li>Open MILO → enter the server address (e.g. <code>https://milo.yourcollege.edu</code>)</li><li>Continue with Google</li></ol>
+    </div>
+    <div class="card reveal">
+      <h3>Web app & self-hosting</h3>
+      <p style="color:var(--ink-2);font-size:14px;margin-top:8px">The same product runs in any browser at your server's address. Hosting MILO takes one container and one Google OAuth client; Render, Fly.io and plain Docker configurations are included in the source.</p>
+      <p style="font-size:13px;margin-top:10px"><code>docker build -t milo . && docker run -p 8787:8787 -v milo-data:/app/data --env-file .env milo</code></p>
+      <p style="color:var(--ink-3);font-size:13px;margin-top:10px">Bank connections need RBI Account Aggregator credentials (e.g. Setu); demat connections need a Zerodha Kite Connect or Upstox developer app. Until they are configured, MILO shows those providers as unavailable rather than pretending.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="wrap faq">
+  <div class="kicker reveal">Questions</div>
+  <h2 class="reveal" style="margin-bottom:24px">Straight answers.</h2>
+  <details class="reveal"><summary>Is MILO a bank or a wallet?</summary><p>No. MILO is a read-only layer above the accounts you already have. It cannot move money.</p></details>
+  <details class="reveal"><summary>Why can I only add people who have MILO?</summary><p>Because a balance has to point at a real, verified person. Typed names drift, duplicate and forget. Invite someone by email; once they sign in with Google you can add them.</p></details>
+  <details class="reveal"><summary>Is the Student Money Health score a credit score?</summary><p>No. It is a 0–100 reflection of your own habits, computed only from your data, visible only to you. No bank sees it.</p></details>
+  <details class="reveal"><summary>What happens when I disconnect an account?</summary><p>MILO revokes the provider consent, deletes the stored token, and removes that connection's accounts and transactions from your identity.</p></details>
+  <details class="reveal"><summary>Why does the Android app ask for a server address?</summary><p>Your data lives on a MILO server run by your college or team, never on someone else's. The app is the same for everyone; only the address differs.</p></details>
+</section>
+
+<footer><div class="wrap"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span><b style="color:var(--ink)">MILO</b> · Student Financial Identity</span><span>Read-only by design · No fake data · Open source</span></div></div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%6)*60+'ms';io.observe(el)});
+</script>
+</body>
+</html>

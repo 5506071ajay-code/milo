@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MILO</string>
+    <string name="title_activity_main">MILO</string>
+    <string name="package_name">com.milo.app</string>
+    <string name="custom_url_scheme">com.milo.app</string>
+</resources>

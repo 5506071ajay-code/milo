@@ -1,0 +1,10 @@
+node_modules/
+dist/
+/data/
+.env
+android/build/
+android/app/build/
+android/.gradle/
+android/capacitor-cordova-android-plugins/build/
+android/app/src/main/assets/public/
+*.sqlite*

@@ -1,0 +1,19 @@
+# Render Blueprint (Node runtime, no Docker needed). Repo files must be at the repository root.
+services:
+  - type: web
+    name: milo
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node server/index.js
+    healthCheckPath: /auth/config
+    disk: { name: milo-data, mountPath: /app/data, sizeGB: 1 }
+    envVars:
+      - { key: NODE_VERSION, value: 22.14.0 }
+      - { key: NODE_ENV, value: production }
+      - { key: MILO_DB_PATH, value: /app/data/milo.sqlite }
+      - { key: MILO_SESSION_SECRET, generateValue: true }
+      - { key: MILO_ENCRYPTION_KEY, generateValue: true }
+      - { key: MILO_PUBLIC_URL, sync: false }
+      - { key: GOOGLE_CLIENT_ID, sync: false }
+      - { key: GOOGLE_CLIENT_SECRET, sync: false }

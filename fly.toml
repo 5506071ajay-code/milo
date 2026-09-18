@@ -1,0 +1,13 @@
+app = "milo"
+primary_region = "bom"
+[build]
+[env]
+  NODE_ENV = "production"
+  PORT = "8787"
+  MILO_DB_PATH = "/app/data/milo.sqlite"
+[[mounts]]
+  source = "milo_data"
+  destination = "/app/data"
+[http_service]
+  internal_port = 8787
+  force_https = true
