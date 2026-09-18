@@ -41,6 +41,7 @@ export const Data = {
   connections: () => api('/api/connections'),
   connect: (providerId, inputs) => api('/api/connections', { method: 'POST', body: { providerId, consent: true, inputs } }),
   sync: (id) => api(`/api/connections/${id}/sync`, { method: 'POST' }),
+  append: (id, inputs) => api(`/api/connections/${id}/append`, { method: 'POST', body: { inputs } }),
   disconnect: (id) => api(`/api/connections/${id}`, { method: 'DELETE' }),
   accounts: () => api('/api/accounts'),
   transactions: () => api('/api/transactions'),

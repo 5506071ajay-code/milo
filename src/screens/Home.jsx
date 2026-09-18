@@ -131,7 +131,7 @@ function NoAccounts({ state }) {
       <Section>
         <div className="hero empty-hero">
           <div className="grid-3">
-            <div className="card flat"><b>Connect a bank</b><div className="small sub">Through the RBI Account Aggregator framework, with your explicit consent.</div></div>
+            <div className="card flat"><b>Import a bank statement</b><div className="small sub">Export a CSV from net-banking. Real transactions, no registration.</div></div>
             <div className="card flat"><b>Connect a broker</b><div className="small sub">Demat holdings and funds from Zerodha or Upstox.</div></div>
             <div className="card flat"><b>Or try demo data</b><div className="small sub">A clearly-labelled sample student, removable in one click.</div></div>
           </div>

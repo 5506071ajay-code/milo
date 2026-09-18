@@ -237,7 +237,7 @@ app.post('/api/connections', requireAuth, async (req, res) => {
     const start = await p.start(req.user, conn, inputs);
     if (start.providerRef) db.prepare('UPDATE connections SET provider_ref = ? WHERE id = ?').run(start.providerRef, id);
     if (start.redirectUrl) return res.json({ connection: connRow(conn), redirectUrl: start.redirectUrl });
-    const done = await p.complete(conn, {});
+    const done = await p.complete(conn, {}, inputs);
     db.prepare('UPDATE connections SET token_ciphertext = ?, provider_ref = ?, label = ?, consent_expires_at = ?, status = ? WHERE id = ?').run(encrypt(done.tokens), done.providerRef, done.label, done.consentExpiresAt, 'connected', id);
     const synced = await runSync(db.prepare('SELECT * FROM connections WHERE id = ?').get(id), req.user);
     audit(req.user.id, 'connection.connected', id, req.ip, { provider: p.id, ...synced });
@@ -263,6 +263,19 @@ app.get('/api/connections/:id/callback', async (req, res) => {
     db.prepare('UPDATE connections SET status = ?, last_error = ? WHERE id = ?').run('error', e.message.slice(0, 500), conn.id);
     res.redirect('/#/accounts?error=' + encodeURIComponent(e.message.slice(0, 120)));
   }
+});
+// Statement imports: add more rows to an existing import (deduplicated).
+app.post('/api/connections/:id/append', requireAuth, async (req, res) => {
+  const conn = db.prepare('SELECT * FROM connections WHERE id = ? AND user_id = ?').get(req.params.id, req.user.id);
+  const p = conn && getProvider(conn.provider_id);
+  if (!conn || !p?.append) return res.status(404).json({ error: 'not_found' });
+  try {
+    const tokens = await p.append(conn, decrypt(conn.token_ciphertext), req.body?.inputs || {});
+    db.prepare('UPDATE connections SET token_ciphertext = ? WHERE id = ?').run(encrypt(tokens), conn.id);
+    const synced = await runSync(db.prepare('SELECT * FROM connections WHERE id = ?').get(conn.id), req.user);
+    audit(req.user.id, 'connection.append', conn.id, req.ip, { added: tokens.added });
+    res.json({ added: tokens.added, synced });
+  } catch (e) { res.status(400).json({ error: 'append_failed', message: e.message }); }
 });
 app.post('/api/connections/:id/sync', requireAuth, async (req, res) => {
   const conn = db.prepare('SELECT * FROM connections WHERE id = ? AND user_id = ?').get(req.params.id, req.user.id);

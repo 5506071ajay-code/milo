@@ -29,9 +29,10 @@ import More, { TOOLS } from './screens/More.jsx';
 import SignIn from './screens/SignIn.jsx';
 import { IS_NATIVE, setServerUrl } from './api.js';
 import Welcome from './screens/Welcome.jsx';
+import Import from './screens/Import.jsx';
 import { Avatar } from './components/UserPicker.jsx';
 
-const ROUTES = { home: Home, journal: Journal, tx: Transaction, add: Add, split: Split, owe: Owe, settle: Settle, cfo: CFO, accounts: Accounts, purpose: Purpose, forecast: Forecast, calendar: Calendar, emergency: Emergency, allowance: Allowance, spending: Spending, micro: Micro, goals: Goals, streaks: Streaks, health: Health, patterns: Patterns, duplicates: Duplicates, notifications: Notifications, more: More, welcome: Welcome };
+const ROUTES = { home: Home, journal: Journal, tx: Transaction, add: Add, split: Split, owe: Owe, settle: Settle, cfo: CFO, accounts: Accounts, purpose: Purpose, forecast: Forecast, calendar: Calendar, emergency: Emergency, allowance: Allowance, spending: Spending, micro: Micro, goals: Goals, streaks: Streaks, health: Health, patterns: Patterns, duplicates: Duplicates, notifications: Notifications, more: More, welcome: Welcome, import: Import };
 
 function NotFound() { return <div className="card" style={{ marginTop: 20 }}><b>Page not found</b><p className="small sub">This screen does not exist. <a href="#/home">Go home</a>.</p></div>; }
 

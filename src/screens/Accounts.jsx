@@ -55,7 +55,8 @@ export default function Accounts() {
                   <div className="row between wrap" style={{ alignItems: 'flex-start' }}>
                     <div><div className="row" style={{ gap: 8 }}><b>{c.label || c.provider}</b><span className={`badge ${tone}`}>{label}</span>{c.demo && <span className="badge marigold">DEMO</span>}</div><div className="tiny muted" style={{ marginTop: 4 }}>{c.provider} · consented {fmtDate(c.consentGrantedAt)} · scopes: {c.consentScopes.join(', ')}{c.consentExpiresAt ? ` · consent valid till ${fmtDate(c.consentExpiresAt)}` : ''}</div>{c.lastSyncAt && <div className="tiny muted">Last synced {fmtDate(c.lastSyncAt)} {fmtTime(c.lastSyncAt)}</div>}{c.lastError && <div className="tiny" style={{ color: 'var(--rose)', marginTop: 4 }}>{c.lastError}</div>}</div>
                     <div className="row" style={{ gap: 6 }}>
-                      {['connected', 'error', 'expired'].includes(c.status) && <button className="btn secondary sm" onClick={() => sync(c)} disabled={busy === c.id}><motion.span animate={busy === c.id ? { rotate: 360 } : { rotate: 0 }} transition={busy === c.id ? { repeat: Infinity, duration: 0.9, ease: 'linear' } : {}} style={{ display: 'inline-flex' }}>{I.refresh}</motion.span> {c.status === 'expired' ? 'Re-authorise' : 'Sync'}</button>}
+                      {c.providerId === 'statement_import' && <a className="btn secondary sm" href={`#/import?append=${c.id}`}>{I.plus} Add statement</a>}
+                      {['connected', 'error', 'expired'].includes(c.status) && c.providerId !== 'statement_import' && <button className="btn secondary sm" onClick={() => sync(c)} disabled={busy === c.id}><motion.span animate={busy === c.id ? { rotate: 360 } : { rotate: 0 }} transition={busy === c.id ? { repeat: Infinity, duration: 0.9, ease: 'linear' } : {}} style={{ display: 'inline-flex' }}>{I.refresh}</motion.span> {c.status === 'expired' ? 'Re-authorise' : 'Sync'}</button>}
                       <button className="btn ghost sm" onClick={() => disconnect(c)} disabled={busy === c.id}>Disconnect</button>
                     </div>
                   </div>
@@ -68,7 +69,7 @@ export default function Accounts() {
         <Section>
           <div className="section-head"><h2>Connect a bank or broker</h2></div>
           <div className="grid-2">
-            {real.map((p) => <ProviderCard key={p.id} p={p} onConnect={() => { setConsent(p); setAgree(false); setError(''); }} connected={state.connections.some((c) => c.providerId === p.id && c.status === 'connected')} />)}
+            {real.map((p) => <ProviderCard key={p.id} p={p} onConnect={() => { if (p.id === 'statement_import') { window.location.hash = '#/import'; return; } setConsent(p); setAgree(false); setError(''); }} connected={state.connections.some((c) => c.providerId === p.id && c.status === 'connected')} />)}
           </div>
         </Section>
         {demo && (
@@ -105,10 +106,10 @@ export default function Accounts() {
 function ProviderCard({ p, onConnect, connected }) {
   return (
     <div className={`card provider ${p.available ? '' : 'muted-card'}`}>
-      <div className="row between" style={{ alignItems: 'flex-start' }}><div><b>{p.name}</b><div className="tiny muted" style={{ marginTop: 2 }}>{p.kind === 'bank' ? 'Banks · RBI Account Aggregator' : p.kind === 'demat' ? 'Demat / broker' : 'Sample data'}</div></div>{connected ? <span className="badge green">Connected</span> : p.available ? <span className="badge blue">Available</span> : <span className="badge marigold">Not available</span>}</div>
+      <div className="row between" style={{ alignItems: 'flex-start' }}><div><b>{p.name}</b><div className="tiny muted" style={{ marginTop: 2 }}>{p.id === 'statement_import' ? 'Any bank · no registration' : p.kind === 'bank' ? 'Banks · RBI Account Aggregator (registered companies only)' : p.kind === 'demat' ? 'Demat / broker' : 'Sample data'}</div></div>{connected ? <span className="badge green">Connected</span> : p.available ? <span className="badge blue">Available</span> : <span className="badge marigold">Not available</span>}</div>
       <p className="small sub" style={{ marginTop: 8 }}>{p.covers}</p>
-      {p.available ? <button className="btn sm" style={{ marginTop: 10 }} onClick={onConnect} disabled={connected && p.demo}>{connected ? (p.demo ? 'Connected' : 'Connect another') : 'Connect'}</button> : (
-        <div className="card flat tiny" style={{ marginTop: 10 }}><b>Unavailable on this server.</b> {p.reason}{p.requiredEnv?.length ? <> Required configuration: <code>{p.requiredEnv.join(', ')}</code>.</> : null}</div>
+      {p.available ? <button className="btn sm" style={{ marginTop: 10 }} onClick={onConnect} disabled={connected && p.demo}>{connected ? (p.demo ? 'Connected' : p.id === 'statement_import' ? 'Import another' : 'Connect another') : p.id === 'statement_import' ? 'Import' : 'Connect'}</button> : (
+        <div className="card flat tiny" style={{ marginTop: 10 }}><b>Unavailable on this server.</b> {p.reason}{p.requiredEnv?.length ? <> Required configuration: <code>{p.requiredEnv.join(', ')}</code>.</> : null}{p.id === 'setu_aa' && <> Live bank data through the Account Aggregator is only granted to registered companies; individuals should import a statement instead.</>}</div>
       )}
     </div>
   );

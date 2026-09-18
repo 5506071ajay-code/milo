@@ -9,8 +9,9 @@ import demo from './demo.js';
 import setuAA from './setu-aa.js';
 import zerodha from './zerodha-kite.js';
 import upstox from './upstox.js';
+import statement from './statement.js';
 
-export const PROVIDERS = [setuAA, zerodha, upstox, demo];
+export const PROVIDERS = [statement, setuAA, zerodha, upstox, demo];
 export function getProvider(id) { return PROVIDERS.find((p) => p.id === id) || null; }
 export function describeProviders() {
   return PROVIDERS.map((p) => ({ id: p.id, name: p.name, kind: p.kind, covers: p.covers, scopes: p.scopes, demo: !!p.demo, inputs: p.inputs || [], ...p.status() }));

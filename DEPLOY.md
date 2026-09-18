@@ -47,7 +47,13 @@ Open `https://<service-name>.onrender.com/auth/config` → should show `"googleC
 - Bank connections: set `SETU_AA_*`; demat: `KITE_API_KEY/SECRET` or `UPSTOX_API_KEY/SECRET` (see .env.example).
 - Free-tier services sleep after inactivity; the first request takes ~30 s.
 
-## Bank accounts (Setu Account Aggregator) — sandbox first
+## Your own bank data as an individual — statement import
+The RBI Account Aggregator only serves registered companies (FIUs). Individuals use **Import a bank statement**:
+net-banking → Accounts → Statement → download as CSV → MILO → Accounts → Import. HDFC, SBI, ICICI, Axis, Kotak and
+similar CSV layouts are detected automatically; re-importing overlapping periods is de-duplicated. Balance comes from
+the statement's running balance. Nothing is sent to the bank.
+
+## Bank accounts (Setu Account Aggregator) — companies only, sandbox first
 1. Sign up at https://bridge.setu.co (Setu's developer console). Free; sandbox needs no approval.
 2. Products → Account Aggregator → Create product (sandbox). In its configuration set the notification/callback URL to `https://<your-render-url>/api/setu/notify` (optional; MILO polls, it does not depend on notifications).
 3. Open the product → API credentials. Copy **Client ID**, **Client Secret** and the **Product Instance ID**.
